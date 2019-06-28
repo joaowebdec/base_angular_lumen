@@ -1,0 +1,6 @@
+@import '../loading-pulse.scss';
+
+.avatar {
+    animation: pulse 1s infinite ease-in-out;
+    -webkit-animation: pulse 1s infinite ease-in-out;
+}

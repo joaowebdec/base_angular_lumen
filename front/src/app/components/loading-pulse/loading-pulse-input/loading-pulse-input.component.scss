@@ -1,0 +1,9 @@
+@import '../loading-pulse.scss';
+
+.input-pulse {
+    padding:30px;
+    border-radius: 5px;
+    animation: pulse 1s infinite ease-in-out;
+    -webkit-animation: pulse 1s infinite ease-in-out;
+    margin-bottom: 25px;
+}

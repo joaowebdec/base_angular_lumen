@@ -1,0 +1,123 @@
+<div class="page-layout carded fullwidth inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+    
+    <div class="center">
+
+        <!-- Header -->
+        <header-index title="Usuários" icon="people" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}" (filter)="filter()"></header-index>
+
+        <!-- Conteudo -->
+        <div class="content-card">
+
+            <mat-table #table [dataSource]="users"
+                    [@animateStagger]="{value:'50'}" style="flex: 1 1 auto;" *ngIf="!searching">
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                    <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
+                    <mat-cell *matCellDef="let user">
+                        <img class="avatar ng-tns-c94-1050 ng-star-inserted" alt="Abbott" [src]="getImage(user.image)">
+                        <p class="text-truncate font-weight-600">{{ user.name }}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Email Column -->
+                <ng-container matColumnDef="email">
+                    <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-sm>Email</mat-header-cell>
+                    <mat-cell *matCellDef="let user" fxHide fxShow.gt-sm>
+                        <p class="email text-truncate">
+                            {{ user.email }}
+                        </p>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Criado em Column -->
+                <ng-container matColumnDef="created_at">
+                    <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-md>Criado em</mat-header-cell>
+                    <mat-cell *matCellDef="let user" fxHide fxShow.gt-md>
+                        <p class="phone text-truncate">
+                            {{ user.created_at | date:'d/MM/y H:mm:ss' }}
+                        </p>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Ultima atualização Column -->
+                <ng-container matColumnDef="updated_at">
+                    <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-md>Ultima atualização</mat-header-cell>
+                    <mat-cell *matCellDef="let user" fxHide fxShow.gt-md>
+                        <p class="job-title text-truncate">
+                            {{ user.updated_at | date:'d/MM/y H:mm:ss' }}
+                        </p>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Status Column -->
+                <ng-container matColumnDef="deleted_at">
+                    <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-sm fxShow.gt-md>Status</mat-header-cell>
+                    <mat-cell *matCellDef="let user" fxHide fxShow.gt-sm fxShow.gt-md>
+                        <button mat-icon-button>
+                            <mat-icon class="s-16" style="border-radius: 50%;" [ngClass]="{'red-500': user.deleted_at, 'green-600': !user.deleted_at }">
+                                {{ user.deleted_at ? 'close' : 'check' }}
+                            </mat-icon>
+                        </button>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="buttons">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let user">
+                        <div fxFlex="row" fxLayoutAlign="end center">
+            
+                            <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="More"
+                                    (click)="$event.stopPropagation();">
+                                <mat-icon class="secondary-text">more_vert</mat-icon>
+                            </button>
+            
+                            <mat-menu #moreMenu="matMenu">
+                                <button mat-menu-item (click)="changeStatus(user)">
+                                    <mat-icon>{{ user.deleted_at ? 'check' : 'close' }}</mat-icon>
+                                    <span>{{ user.deleted_at ? 'Ativar' : 'Inativar' }}</span>
+                                </button>
+                                <button mat-menu-item (click)="changePassword(user.id)">
+                                    <mat-icon>lock</mat-icon>
+                                    <span>Alterar senha</span>
+                                </button>
+                            </mat-menu>
+                        </div>
+            
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row 
+                    *matRowDef="let user; columns: displayedColumns;" 
+                    [@animate]="{value:'*',params:{y:'100%'}}"
+                    (click)="edit(user)">
+                </mat-row>
+            </mat-table>
+
+            <div fxLayout="column" fxLayoutAlign="center center" fxFlex *ngIf="!users.length && !searching" style="margin-top: 50px;margin-bottom: 50px;">
+                <mat-icon class="s-128 mb-16 select-message-icon hint-text"
+                            [@animate]="{value:'*',params:{delay:'300ms',scale:'0.2'}}">
+                    people
+                </mat-icon>
+                <span class="select-message-text hint-text" [@animate]="{value:'*',params:{delay:'400ms'}}" style="font-size: 24px; font-weight: 300;">
+                    <span>Nenhum usuário encontrado!</span>
+                </span>
+            </div>
+            <loading-pulse-table itens="5" *ngIf="searching"></loading-pulse-table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Botão de novo usuário para mobile -->
+<button mat-fab class="accent" style="position: absolute;bottom: 10px;right: 10px;" fxShow.gt-xs fxHide.gt-sm fxHide.gt-md
+        [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}" [routerLink]="['save']">
+    <mat-icon>person_add</mat-icon>
+</button>

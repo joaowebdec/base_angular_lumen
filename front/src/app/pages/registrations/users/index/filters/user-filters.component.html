@@ -1,0 +1,55 @@
+<h2 mat-dialog-title>Filtros</h2>
+<mat-dialog-content>
+    
+    <form name="userForm" novalidate [formGroup]="form" fxLayout="column" fxFlex>
+
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+
+            <!-- Nome -->
+            <mat-form-field appearance="outline" fxFlex="60%">
+                <mat-label>Nome</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+
+            <!-- E-mail -->
+            <mat-form-field appearance="outline" fxFlex="60%">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email">
+            </mat-form-field>
+
+        </div>
+
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap.lt-md="0px">
+            <mat-radio-group formControlName="status">
+                <mat-radio-button value="">Todos&nbsp;</mat-radio-button>
+                <mat-radio-button value="1">Somente ativos&nbsp;</mat-radio-button>
+                <mat-radio-button value="0">Somente inativos&nbsp;</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px" style="margin-top: 20px;">
+
+            <mat-form-field appearance="outline" fxFlex="25%">
+                <mat-label>Data de cadastro</mat-label>
+                <input matInput [matDatepicker]="pickerInicial" placeholder="Data inicial" readonly formControlName="dateInit">
+                <mat-datepicker-toggle matSuffix [for]="pickerInicial"></mat-datepicker-toggle>
+                <mat-datepicker #pickerInicial></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" fxFlex="25%">
+                <mat-label>Data de cadastro</mat-label>
+                <input matInput [matDatepicker]="pickerFinal" placeholder="Data final" readonly formControlName="dateFinal">
+                <mat-datepicker-toggle matSuffix [for]="pickerFinal"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFinal></mat-datepicker>
+            </mat-form-field>
+
+        </div>
+
+    </form>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <mat-progress-spinner color="accent" mode="indeterminate" diameter="30" *ngIf="filtering"></mat-progress-spinner>
+    <button mat-button mat-dialog-close [disabled]="filtering">Cancelar</button>
+    <button mat-raised-button color="accent" (click)="filter()" [disabled]="filtering">Filtrar</button>
+</mat-dialog-actions>

@@ -1,0 +1,24 @@
+.header {    
+    flex-direction: row;
+    box-sizing: border-box;
+    display: flex;
+    place-content: center space-between;
+    align-items: center;
+    height: 136px !important;
+    min-height: 136px !important;
+    max-height: 136px !important;
+}
+
+.titulo {
+    flex-direction: row;
+    box-sizing: border-box;
+    display: flex;
+    place-content: center flex-start;
+    align-items: center;
+}
+
+.mat-progress-spinner {
+    display: inline-table !important;
+    opacity: 0.3 !important;
+    margin-right: 5px !important;
+}

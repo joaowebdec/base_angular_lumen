@@ -1,0 +1,47 @@
+// Import Fuse core library
+@import "@fuse/scss/core";
+
+// Import app.theme.scss
+@import "app/app.theme";
+
+.mat-table {
+    width: 100%;
+    background: transparent;
+    box-shadow: none;
+
+    .mat-column-checkbox {
+        flex: 0 1 64px;
+        padding-left: 18px;
+    }
+
+    .mat-column-avatar {
+        flex: 0 1 64px;
+    }
+
+    .mat-column-buttons {
+        flex: 0 1 80px;
+    }
+
+    .mat-row {
+        position: relative;
+        cursor: pointer;
+        padding: 8px;
+
+        .mat-cell {
+            min-width: 0;
+
+            &.mat-column-detail-button {
+                flex: 0 1 auto;
+                padding: 0 24px 0 0;
+
+                @include media-breakpoint('gt-md') {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.mr-10 {
+    margin-right: 10px;
+}
