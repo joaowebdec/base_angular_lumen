@@ -12,7 +12,7 @@ Esse é um projeto para ser usado como bootstrap de novos projetos.
 
 Para "instalar" esse projetos, siga os passos abaixo:
 
-1 - git clone https://github.com/joaowebdec/base_angular_lumen.git
+- 1 git clone https://github.com/joaowebdec/base_angular_lumen.git
 2 - cd base_angular_lumnen
 3 - mv front/ ../base_angular
 4 - cd base_angular
