@@ -1,21 +1,30 @@
-# Lumen PHP Framework
+# Skeleton para projetos novos
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/lumen-framework/v/unstable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+Esse é um projeto para ser usado como bootstrap de novos projetos.
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+## Requisitos
 
-## Official Documentation
+- PHP 7.1 ou maior (Foi desenvolvimento no PHP 7.3)
+- Angular 7
+- Node (Preferencialmente 10)
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+## Tutorial
 
-## Security Vulnerabilities
+Para "instalar" esse projetos, siga os passos abaixo:
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+1 - git clone https://github.com/joaowebdec/base_angular_lumen.git
+2 - cd base_angular_lumnen
+3 - mv front/ ../base_angular
+4 - cd base_angular
+5 - npm install
+6 - ng serve --open (Se já tem alguma aplicação na porta 4200 adicione --port 4300 ou qualquer outra porta)  
+7 - Aguarda a aplicação (Front) abrir no browser, abrindo sua aplicação angular está rodando, próximo passo é a api
+8 - cd ../base_angular_lumen
+9 - composer install
+10 - Crie o banco de dados 
+11 - Dentro da pasta base_angular_lumen, copie o arquivo .env.example e renomeio para somente .env, após isso modifique o .env com os dados de conexão do banco
+12 - php artisan migrate (Para criar as tabelas)
+13 - php artisan db:seed para popular a(s) tabela(s)
+14 - No arquivo "UsersTableSeeder" tem os 2 usuários default com suas senhas, utiliza para acessar a plataforma e enjoy
 
-## License
-
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+\o/
