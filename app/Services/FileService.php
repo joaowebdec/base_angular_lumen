@@ -14,8 +14,8 @@ class FileService
      */
     public static function generateName(\Illuminate\Http\UploadedFile $file) : string
     {
-        $extension = explode('/', $file->getMimeType())[1];
-        return md5(date('YmdHis')) . '.' . $extension;
+        $extension = $file->getClientOriginalExtension();
+        return date('YmdHis') . '.' . $extension;
     }
 
 

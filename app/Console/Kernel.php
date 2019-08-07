@@ -13,7 +13,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\FileProcessingCommand::class,
+        Commands\SanitationProcessCommand::class,
+        Commands\CampaignsProcessCommand::class
     ];
 
     /**
@@ -24,6 +26,5 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        //
     }
 }

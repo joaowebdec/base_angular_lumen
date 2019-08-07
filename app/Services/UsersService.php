@@ -27,7 +27,7 @@ class UsersService
     /**
      * Salva ou altera um usuário
      * 
-     * @return Boolean
+     * @return Array
      */
     public static function save(array $params, ?\Illuminate\Http\UploadedFile $uploadFile = null) : array
     {
@@ -42,7 +42,7 @@ class UsersService
             
             # Realiza o upload            
             if ($uploadFile) {
-                $image = FileService::upload(new FileLocalService(), $uploadFile, 'users');
+                $image = FileService::upload(new FileLocalService(), $uploadFile, 'images/users');
                 if (!$image)
                     throw new \Exception("Não foi possivel realizar o upload da imagem!", 417);
             } else
@@ -88,7 +88,7 @@ class UsersService
         
         $user = Users::withTrashed()->find($id);
         if (!empty($user->image))
-            return FileService::remove(new FileLocalService(), 'users/' . $user->image);
+            return FileService::remove(new FileLocalService(), 'images/users/' . $user->image);
         else
             return true;
     }

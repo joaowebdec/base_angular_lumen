@@ -18,7 +18,7 @@ class UsersRepository extends Repository
      * 
      * @return Boolean
      */
-    public function insert(array $params) : bool
+    public function insert(array $params, bool $returnInstance = false) : bool
     {   
         $params['password'] = password_hash($params['password'], PASSWORD_BCRYPT);
         $user               = $this->model::create($params); 

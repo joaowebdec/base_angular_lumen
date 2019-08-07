@@ -13,9 +13,13 @@ abstract class Repository
      * 
      * @return Boolean
      */
-    public function insert(array $params) : bool
+    public function insert(array $params, bool $returnInstance = false)
     {   
         $entity = $this->model::create($params); 
+
+        if ($returnInstance)
+            return $entity;
+
         return $entity instanceof $this->model;
     }
 
@@ -45,6 +49,12 @@ abstract class Repository
     public function findAll(?array $filter = null) : Array
     {
         $table = strtolower(explode('\\', $this->model)[1]);
+
+        if (empty($filter)) {
+            $filter['conditions']      = '1 = :default';
+            $filter['bind']['default'] = 1;
+        }
+
         return DB::table($table)->whereRaw($filter['conditions'], $filter['bind'])->get()->toArray();   
     }
 
@@ -57,6 +67,17 @@ abstract class Repository
     {
         $entity = $this->model::where('id', $id);
         return $entity->delete();
+    }
+
+    /**
+     * Delete varias registros de acordo com o where
+     * 
+     * @return Boolean
+     */
+    public function deleteWhere(array $filter) : bool
+    {
+        $table = strtolower(explode('\\', $this->model)[1]);
+        return DB::table($table)->whereRaw($filter['conditions'], $filter['bind'])->delete();
     }
 
     /**
@@ -75,9 +96,12 @@ abstract class Repository
      * 
      * @return Int
      */
-    public function count(array $filters) : int
+    public function count(array $filters, bool $withTrashed = true) : int
     {
-        return $this->model::withTrashed()->where($filters)->count();
+        if ($withTrashed)
+            return $this->model::withTrashed()->where($filters)->count();
+        
+        return $this->model::where($filters)->count();
     }
 
     /**
@@ -85,9 +109,12 @@ abstract class Repository
      * 
      * @return Int $id
      */
-    public function getById(int $id) : array
+    public function getById(int $id, bool $withTrashed = true) : array
     {
-        return $this->model::withTrashed()->where('id', $id)->get()->toArray()[0];
+        if ($withTrashed)
+            return $this->model::withTrashed()->where('id', $id)->get()->toArray()[0];
+
+        return $this->model::where('id', $id)->get()->toArray()[0];
     }
 
     /**

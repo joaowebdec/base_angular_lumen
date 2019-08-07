@@ -12,5 +12,15 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call('UsersTableSeeder');
+        $this->call('BanksTableSeeder');
+        $this->call('ActionsTableSeeder');
+        $this->call('MappingsTableSeeder');
+        $this->call('BankActionMappingsTableSeeder');
+        $this->call('TypeContactsSeederTable');
+        $this->call('TypeCampaignsTableSeeder');
+        $this->call('SettingsTableSeeder');
+        $this->call('FieldSettingsTableSeeder');
+        $this->call('AttributesSettingsTableSeeder');
+        $this->call('FieldAttributesSettingsTableSeeder');
     }
 }

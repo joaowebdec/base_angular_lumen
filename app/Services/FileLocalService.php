@@ -14,7 +14,7 @@ class FileLocalService implements FileUploadManager
      */
     public function upload(\Illuminate\Http\UploadedFile $file, string $newName, string $destination) : \Symfony\Component\HttpFoundation\File\File
     {
-        $destination = '/../../public/images/' . $destination;
+        $destination = '/../../public/' . $destination;
         return $file->move(__DIR__ . $destination, $newName);
     }
 
@@ -25,7 +25,7 @@ class FileLocalService implements FileUploadManager
      */
     public function remove(string $file) : bool
     {
-        return unlink(__DIR__ . '/../../public/images/' . $file);
+        return unlink(__DIR__ . '/../../public/' . $file);
     }
 
 }

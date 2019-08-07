@@ -1,0 +1,5 @@
+Matricula;CPF;Nome;Valor do saque;Tipo do saque;Agencia;Agencia Digito;Conta;Conta digito;Seguros;Numero do conta interna;Finalidade do crédito;Codigo do orgão;Cód. Entidade;Cód. Loja;Código Situação Servidor;Forma Crédito;Cód. Forma Envio;Cód Banco OP;Banco;Celulares
+123,321;63873032066;Fulano da Silva;1.200,00;1;0001;;087387;4;123,321;123333;1;23;1;2;21;1;2;237;001;2127345589,2126086578
+321;80021471037;Ciclano da Silva;2.200,00;1;2341;;087321;3;321,123;321222;2;26;1;3;22;1;3;0;237;
+432,234;90923259023;Beltrano da Silva;3.200,00;1;1121;;090876;2;234,432;456555;2;22;1;4;23;1;4;;236;11968766628
+123,321;63873032066;Fulano da Silva;1.200,00;1;0001;;087387;4;123,321;123333;1;23;1;2;21;1;2;237;001;2127345589,2126086578
